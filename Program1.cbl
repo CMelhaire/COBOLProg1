@@ -26,6 +26,10 @@
                05 QUANTITY-SOLD PIC 9(3).
            01 WS-EOF PIC A(1).
 
+		   01 RUNNING-TOTTAL.
+			   05 TOTAL-SALE  PIC 9(5).
+			   05 TOTAL-TAX   PIC 9(5).
+			   05 TOTAL-FINAl PIC 9(5).
 
                
 
