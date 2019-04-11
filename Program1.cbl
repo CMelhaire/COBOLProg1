@@ -26,7 +26,7 @@
                05 CUSTO-NAME PIC A(24).
                05 UNIT-PRICES PIC 9(5).
                05 QUANTITYS-SOLD PIC 9(3).
-                   asd
+                   
 
 
 
