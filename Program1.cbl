@@ -42,14 +42,12 @@
                    DISPLAY "CUSTOMER-NAME: "
                    ACCEPT CUSTO-NAME
                    DISPLAY "UNIT-PRICE INPUT: "
+                   ACCEPT UNIT-PRICES
+                   DISPLAY "QUNATITYS-SOLD: "
+                   ACCEPT QUANTITYS-SOLD
 
-
-
-
-
-               MOVE 
-               
-                   MOVE 
+                   MOVE CUST-NUM TO CUST-NO
+                   MOVE CUSTO-NAME TO CUST-NAME
                    WRITE SALE-FILE
                    END WRITE
                END-PERFORM
