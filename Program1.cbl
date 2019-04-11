@@ -41,7 +41,10 @@
                    ACCEPT CUST-NUM
                    DISPLAY "CUSTOMER-NAME: "
                    ACCEPT CUSTO-NAME
-
+                   DISPLAY "UNIT-PRICE INPUT: "
+                   ACCEPT UNIT-PRICES
+                   DISPLAY "QUANITYS SOLD"
+                   ACCEPT QUANTITYS-SOLD
 
 
 
