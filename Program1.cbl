@@ -51,7 +51,7 @@
                    MOVE UNIT-PRICES TO UNIT-PRICE.
                    MOVE QUANTITYS-SOLD TO QUANTITY-SOLD.
 
-                   WRITE SALE-FILE
+                   WRITE SALES-FILE-ID
                    END-WRITE.
                END-PERFORM
 
