@@ -26,10 +26,8 @@
                05 CUSTO-NAME PIC A(24).
                05 UNIT-PRICES PIC 9(5).
                05 QUANTITYS-SOLD PIC 9(3).
-           
-		   01 Temporary-Variables.
-			    05 TEMP-VAR PIC X(4).
-				05 NEWCUST PIC A.
+                   asd
+
 
 
 
@@ -39,15 +37,24 @@
        procedure division.
        100-MAIN.
            OPEN EXTEND SALES-FILE.
-		   DISPLAY"ADD NEW CUSTOMER - Y OR N" ACCEPT NEWCUST
-               PERFORM 100-LOOP UNTIL NEWCUST EQUALS "N" 
-                  
-                   
+               PERFORM 2 TIMES 
+                   DISPLAY "CUSTOMER-NO: "
+                   ACCEPT CUST-NUM
+                   DISPLAY "CUSTOMER-NAME: "
+                   ACCEPT CUSTO-NAME
+                   DISPLAY "UNIT-PRICE INPUT: "
 
+
+
+
+
+               MOVE 
                
-	   
+                   MOVE 
+                   WRITE SALE-FILE
+                   END WRITE
+               END-PERFORM
 
-			   
 
            goback.
        100-LOOP.
