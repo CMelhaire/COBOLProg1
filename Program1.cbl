@@ -63,4 +63,5 @@
                    MOVE CUST-NUM TO CUST-NO
                    MOVE CUSTO-NAME TO CUST-NAME
                    WRITE SALES-FILE-ID.
+
        end program Program1.
