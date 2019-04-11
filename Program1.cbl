@@ -26,7 +26,7 @@
                05 CUSTO-NAME PIC A(24).
                05 UNIT-PRICES PIC 9(5).
                05 QUANTITYS-SOLD PIC 9(3).
-                   asd
+           
 
 
 
@@ -42,14 +42,12 @@
                    DISPLAY "CUSTOMER-NAME: "
                    ACCEPT CUSTO-NAME
                    DISPLAY "UNIT-PRICE INPUT: "
+                   ACCEPT UNIT-PRICES
+                   DISPLAY "QUNATITYS-SOLD: "
+                   ACCEPT QUANTITYS-SOLD
 
-
-
-
-
-               MOVE 
-               
-                   MOVE 
+                   MOVE CUST-NUM TO CUST-NO
+                   MOVE CUSTO-NAME TO CUST-NAME
                    WRITE SALE-FILE
                    END WRITE
                END-PERFORM
