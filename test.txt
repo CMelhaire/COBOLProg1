@@ -1,11 +1,27 @@
-
 #    Name                 PRICE QTY
-0001 Jack Rasmussen       00010 002
+0001 Jack Rasmussen       00010 100
+Total Sales: $01000
+Sales Tax:   $00050
+Final Sales: $00000
+#    Name                 PRICE QTY
+#    Name                 PRICE QTY
+0001 Jack Rasmussen       00010 100
+Total Sales: $01000
+Sales Tax:   $00050
+Final Sales: $01050
+#    Name                 PRICE QTY
+0001 Jack Rasmussen       00010 100
+0002 Jack                 00010 001
+Total Sales: $01010
+Sales Tax:   $00050
+Final Sales: $02110
+#    Name                 PRICE QTY
+0001 Jack Rasmussen       00010 100
+Total Sales: $01000
+Sales Tax:   $00050
+Final Sales: $01050
+#    Name                 PRICE QTY
+0002 Jack Rasmussen       00010 001
 Total Sales: $00010
 Sales Tax:   $00000
-Final Sales: $00000
-#    Name                 PRICE QTY
-0002 Jack Rasmussen       00010 002
-Total Sales: $00020
-Sales Tax:   $00001
-Final Sales: $00000
+Final Sales: $00010

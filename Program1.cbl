@@ -57,21 +57,41 @@
 			   05 FINAL-SALE   PIC 9(5) VALUE 0.
            01 WS-CONSTANTS.
 			   05 WS-TAX       PIC 9v99 VALUE 0.05.
-               
+             01  MICROFOCUS-COLORS  PIC 99.
+      *THESE COLORS CNA BE USED FOR FOREGROUND AND BACKGROUND.
+           78  BLACK                            VALUE 0.
+           78  BLUE                             VALUE 1.
+           78  GREEN                            VALUE 2.
+           78  CYAN                             VALUE 3.
+           78  RED                              VALUE 4.
+           78  MAGENTA                          VALUE 5.
+           78  BROWN                            VALUE 6.
+           78  WHITE                            VALUE 7.
+      *THHESE COLORS CAN BE USED FOR FOREGROUND ONLY.
+           78  BRIGHT-BLACK                     VALUE 8.
+           78  BRIGHT-BLUE                      VALUE 9.
+           78  BRIGHT-GREEN                     VALUE 10.
+           78  BRIGHT-CYAN                      VALUE 11.
+           78  BRIGHT-RED                       VALUE 12.
+           78  BRIGHT-MAGENTA                   VALUE 13.
+           78  BRIGHT-BROWN                     VALUE 14.
+           78  BRIGHT-WHITE                     VALUE 15.  
 
 
        procedure division.
        100-MAIN.
            OPEN EXTEND SALES-FILE.
 		   WRITE SALES-FILE-ID FROM COL-HDR.
-		   DISPLAY"ADD NEW CUSTOMER - Y OR N" ACCEPT NEWCUST
-               PERFORM 100-LOOP UNTIL NEWCUST EQUALS "N" 
+           DISPLAY"ADD NEW CUSTOMER - Y OR N" ACCEPT NEWCUST  
+				   
+           PERFORM 100-LOOP UNTIL NEWCUST EQUALS "N"
 			   PERFORM 100-WRITE-REPORT
 		   CLOSE SALES-FILE.
 
 
            goback.
        100-LOOP.
+				   
 		           DISPLAY "CUSTOMER-NO: "
                    ACCEPT CUST-NUM
                    DISPLAY "CUSTOMER-NAME: "
@@ -84,10 +104,11 @@
                    MOVE SALESFILES-ID to SALES-FILE-ID
                    WRITE SALES-FILE-ID.
 				   PERFORM 100-CALCULATE-TOTALS
-				   DISPLAY"ADD NEW CUSTOMER - Y OR N"
+				   DISPLAY"RECORD ADDED. ADD ANOTHER CUSTOMER - Y OR N"
                    ACCEPT NEWCUST.
 
        100-WRITE-REPORT.
+		   COMPUTE FINAL-SALE = TOTAL-SALE + SALES-TAX
 		   WRITE SALES-FILE-ID FROM REPORT-TOTAL
 		   WRITE SALES-FILE-ID FROM REPORT-TAX
 		   WRITE SALES-FILE-ID FROM REPORT-FINAL.
@@ -103,6 +124,8 @@
 			   subtract TEMP-SALE from TOTAL-SALE
 			   COMPUTE TEMP-TAX = (WS-TAX * TEMP-SALE)
 			   subtract TEMP-TAX from SALES-TAX
+			   
+			  
            END-IF
-		   COMPUTE FINAL-SALE = SALES-TAX + TOTAL-SALE.
+		   
        end program Program1.
