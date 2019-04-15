@@ -25,3 +25,9 @@ Final Sales: $01050
 Total Sales: $00010
 Sales Tax:   $00000
 Final Sales: $00010
+#    Name                 PRICE QTY
+0001 Jack Rasmussen       00010 100
+0002 Jack Rasmussen       00020 001
+Total Sales: $01020
+Sales Tax:   $00051
+Final Sales: $01071
