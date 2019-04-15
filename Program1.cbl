@@ -15,11 +15,12 @@
        INPUT-OUTPUT SECTION.
        FILE-CONTROL.
            SELECT SALES-FILE ASSIGN TO
-               "C:\Users\thoma\Documents\test.txt"
+               "C:\Users\Caulder\Documents\SalesFile.txt"
            ORGANIZATION IS LINE SEQUENTIAL
            ACCESS IS SEQUENTIAL.
+
        CONFIGURATION SECTION.
-           
+
        DATA DIVISION.
        FILE SECTION.
        FD SALES-FILE.
@@ -31,7 +32,7 @@
            05 UNIT-PRICE         PIC 9(5).
 		   05                    PIC X VALUE SPACES.
            05 QUANTITY-SOLD      PIC -9(3).
-
+             
        WORKING-STORAGE SECTION.
        01 SALESFILES-ID.
            05 CUST-NUM         PIC 9(4).
@@ -72,33 +73,19 @@
                VALUE "Final Sales: ".
 		   05 FINAL-SALE-OUT   PIC -$$,$$$.99        VALUE 0.
 
+       01 REPORT-DIVIDER.
+           05                  PIC X(36)
+           VALUE "************************************".
+
        01 WS-CONSTANTS.
 		   05 WS-TAX           PIC V999 VALUE .065.
 
        01  WS-WORK-AREA.
-           05  TOTAL-SALE      PIC S9(6)V99 VALUE 0.
-           05  SALES-TAX       PIC S9(6)V99 VALUE 0.
-           05  FINAL-SALE      PIC S9(6)V99 VALUE 0.
-  
-       01  MICROFOCUS-COLORS   PIC 99.
-      *THESE COLORS CNA BE USED FOR FOREGROUND AND BACKGROUND.
-           78  BLACK                            VALUE 0.
-           78  BLUE                             VALUE 1.
-           78  GREEN                            VALUE 2.
-           78  CYAN                             VALUE 3.
-           78  RED                              VALUE 4.
-           78  MAGENTA                          VALUE 5.
-           78  BROWN                            VALUE 6.
-           78  WHITE                            VALUE 7.
-      *THHESE COLORS CAN BE USED FOR FOREGROUND ONLY.
-           78  BRIGHT-BLACK                     VALUE 8.
-           78  BRIGHT-BLUE                      VALUE 9.
-           78  BRIGHT-GREEN                     VALUE 10.
-           78  BRIGHT-CYAN                      VALUE 11.
-           78  BRIGHT-RED                       VALUE 12.
-           78  BRIGHT-MAGENTA                   VALUE 13.
-           78  BRIGHT-BROWN                     VALUE 14.
-           78  BRIGHT-WHITE                     VALUE 15.  
+           05  TOTAL-SALE      PIC S9(6)V99          VALUE ZEROS.
+           05  SALES-TAX       PIC S9(6)V99          VALUE ZEROS.
+           05  FINAL-SALE      PIC S9(6)V99          VALUE ZEROS.
+           05  ADD-CHECK       PIC X.
+
        PROCEDURE DIVISION.
       ******************************************************************
       *    100-MAIN-MODULE: Opens Ssales file and report file.   
@@ -114,7 +101,10 @@
            DISPLAY"ADD NEW CUSTOMER - Y OR N"
            ACCEPT NEWCUST
            PERFORM 200-GET-CUST-INFO UNTIL NEWCUST EQUALS "N"
-			   PERFORM 400-WRITE-REPORT
+           IF ADD-CHECK EQUALS "Y"
+               PERFORM 400-WRITE-REPORT
+           END-IF
+           WRITE SALES-FILE-ID FROM REPORT-DIVIDER
 		   CLOSE SALES-FILE.
            GOBACK
            .
@@ -122,7 +112,8 @@
       *    200-GET-CUST-INFO: Displays prompts for customer information
       *    and then accepts the input.  Calls a module to calculate the
       *    totals and taxes, and then prompts the user to input
-      *    another record if they would like to.
+      *    another record if they would like to.  Also double checks 
+      *    if the user wants to add the record to the file.
       ******************************************************************
        200-GET-CUST-INFO.
 	      DISPLAY "CUSTOMER NO: "
@@ -137,9 +128,16 @@
           MOVE CUSTO-NAME TO CUST-NAME
           MOVE UNIT-PRICES TO UNIT-PRICE
           MOVE QUANTITYS-SOLD to QUANTITY-SOLD
-          WRITE SALES-FILE-ID.
-		  PERFORM 300-CALCULATE-TOTALS
-		  DISPLAY "RECORD ADDED. ADD ANOTHER CUSTOMER - Y OR N"
+          DISPLAY "ADD RECORD TO FILE?  Y OR N"
+          ACCEPT ADD-CHECK
+          IF ADD-CHECK EQUALS "Y"
+             WRITE SALES-FILE-ID
+		     PERFORM 300-CALCULATE-TOTALS
+		     DISPLAY "RECORD ADDED. ADD ANOTHER CUSTOMER - Y OR N"
+          ELSE
+              DISPLAY 
+              "RECORD WAS NOT ADDED.  ADD ANOTHER CUSTOMER - Y OR N"
+          END-IF
           ACCEPT NEWCUST
           .
       ******************************************************************
