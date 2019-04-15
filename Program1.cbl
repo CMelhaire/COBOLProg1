@@ -15,7 +15,7 @@
        INPUT-OUTPUT SECTION.
        FILE-CONTROL.
            SELECT SALES-FILE ASSIGN TO
-               "C:\Users\Caulder\Documents\test.txt"
+               "C:\Users\thoma\Documents\test.txt"
            ORGANIZATION IS LINE SEQUENTIAL
            ACCESS IS SEQUENTIAL.
        CONFIGURATION SECTION.
@@ -76,9 +76,9 @@
 		   05 WS-TAX           PIC V999 VALUE .065.
 
        01  WS-WORK-AREA.
-           05  TOTAL-SALE      PIC S9(6)V99.
-           05  SALES-TAX       PIC S9(6)V99.
-           05  FINAL-SALE      PIC S9(6)V99.
+           05  TOTAL-SALE      PIC S9(6)V99 VALUE 0.
+           05  SALES-TAX       PIC S9(6)V99 VALUE 0.
+           05  FINAL-SALE      PIC S9(6)V99 VALUE 0.
   
        01  MICROFOCUS-COLORS   PIC 99.
       *THESE COLORS CNA BE USED FOR FOREGROUND AND BACKGROUND.
